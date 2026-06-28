@@ -1,0 +1,13 @@
+# =============================================================================
+# home-backup cron 定義 (/etc/cron.d/home-backup に配置)
+#   ※ install.sh が INSTALL_DIR を実際のパスに置換して配置します。
+#   分 時 日 月 曜日 ユーザー コマンド
+# =============================================================================
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# 日次 rsync … 毎日 03:00
+0 3 * * *  root  __INSTALL_DIR__/bin/daily-rsync.sh
+
+# 週次アーカイブ … 毎週日曜 04:00
+0 4 * * 0  root  __INSTALL_DIR__/bin/weekly-archive.sh
